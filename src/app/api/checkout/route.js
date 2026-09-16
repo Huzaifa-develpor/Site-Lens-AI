@@ -22,7 +22,7 @@ export async function POST(req) {
       );
     }
 
-    const origin = req.headers.get('origin') || 'http://localhost:3000';
+    const origin = process.env.NEXT_PUBLIC_APP_URL || req.headers.get('origin')
     const reference = auditId || `audit_${Date.now()}`;
     const redirectUrl = `${origin}/?auditId=${reference}&payment=success`;
     const cancelUrl = `${origin}/?auditId=${reference}&payment=cancelled`;
